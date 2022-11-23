@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .formLogin()
           //no need the login page anymore, because using Spring default login page
           //.loginPage("/login")  
-          .defaultSuccessUrl("/booklist")
+          .defaultSuccessUrl("/list")
           .permitAll()
           .and()
       .logout()
