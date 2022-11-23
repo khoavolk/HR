@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title> Human Resources</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+	<h1>Employee Management</h1>
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	
+	<table  class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Age</th>
+				<th>Employee ID</th>
+				<th>Salary</th>
+				<th>Department</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="book:${books}">
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.author}"></td>
+				<td th:text="${book.year}"></td>
+				<td th:text="${book.isbn}"></td>
+				<td th:text="${book.price}"></td>
+				<td th:text="${book.category.name}"></td> 
+				
+				 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td> 
+				 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+				 
+			</tr>
+
+		</tbody>
+	</table>
+	<a href="/add" class="btn btn-success">Add Employee</a>  
+</body>
+</html>

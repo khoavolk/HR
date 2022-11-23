@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Human Resources</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add more employee</h1>
+	<div>
+		<form th:object="${book}" th:action="@{save}" action="#" method="post">
+		  	<label for="title">Name</label>
+			<input type="text" id="title" th:field="*{title}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="author">Position</label>
+			<input type="text" id="author" th:field="*{author}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="isbn">Age</label>
+			<input type="text" th:field="*{year}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="isbn">Employee ID</label>
+			<input type="text" th:field="*{isbn}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="price">Salary</label>
+			<input type="text" th:field="*{price}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<!-- Add drop-list -->
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="deplist">Department</label>
+			 <select id="deplist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select>
+			
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>d
+</html>
+
+
+
